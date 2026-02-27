@@ -1,0 +1,164 @@
+ <div class="row no-gutters p-3">
+    <div class="col-12 mb-2">
+        <small>Parents : <a href="javascript:;" (click)="root();">Root</a>
+            <span *ngFor="let x of benchmark">
+                / <a href="javascript:;" [routerLink]="[ '/pages', x.id ]" (click)="httpGet(x.id)">{{x.name}}</a>
+            </span>
+            <span>{{current}}</span> 
+        </small>
+    </div>
+    <div class="col-6 border rounded bg-white">
+        <div class="p-2">
+            <div class="row">
+                <div class="col-8"> <strong> Parent Pages</strong></div>
+                <div class="col-4 text-right">
+                    <button type="button" (click)="addPages();" class="btn btn-sm btn-primary py-0"><i
+                            class="fas fa-plus"></i> Add Pages
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="height-min">
+            <div class="sortable">
+                <div class="ui-state-default rounded {{x.status}}" *ngFor="let x of items" id="{{x.id}}">
+
+                    <div class="row no-gutters">
+                        <div class="col-9">
+                            <div class="pointer" (click)="child(x)">{{x.name}} <small
+                                    class="px-1 text-monospace">({{x.id}})</small> <span [hidden]="!x.child"><i
+                                        class="fas fa-caret-right"></i> </span></div>
+                            <div>
+                                <small (click)="sendChild(x.url);" class="pointer">{{x.url}}</small>
+                            </div>
+                        </div>
+                        <div class="col-3 ">
+                            <div class="text-right">
+
+                                <span [ngSwitch]="x.status">
+                                    <span *ngSwitchCase="'hide'"><span class="pointer mx-1" placement="left"
+                                            ngbTooltip="Invisible Pages" (click)="status('disable', x);">
+                                            <i class="fas fa-mask "></i></span></span>
+
+                                    <span *ngSwitchCase="'disable'"> <span class="pointer mx-1" placement="left"
+                                            ngbTooltip="Disable" (click)="status('enable', x);">
+                                            <i class="far fa-eye-slash"></i> </span> </span>
+
+                                    <span *ngSwitchCase="'enable'"><span class="pointer mx-1" placement="left"
+                                            ngbTooltip="Enable" (click)="status('hide', x);">
+                                            <i class="far fa-eye"></i> </span></span>
+
+                                    <span *ngSwitchDefault> </span>
+                                </span>
+                                <span class="handle pointer mx-1" placement="left" ngbTooltip="Sorting"><i
+                                        class="fas fa-arrows-alt-v"></i></span>
+
+                                <span class="pointer mx-1" placement="left" [routerLink]="[ '/pages/edit', x.id ]"
+                                    ngbTooltip="Setting"><i class="fas fa-cog"></i> </span>
+
+                                <span [hidden]="x.lock" class="pointer mx-1" (click)="delete(x)" placement="left"
+                                    ngbTooltip="Delete"><i class="fas fa-trash-alt"></i></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 ">
+        <!-- Children -->
+        <div class="ml-2 border rounded  bg-white">
+
+            <div>
+                <div class="p-2">
+                    <div class="row" [hidden]="!childHeader">
+                        <div class="col-8"> <strong > {{childHeader}}'s Child Page</strong></div>
+                        <div class="col-4 text-right">
+                            <button [hidden]="id < 1" (click)="addChild();" type="button"
+                                class="btn btn-sm btn-primary py-0"><i class="fas fa-plus"></i> Add Child </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="height-min" [hidden]="!childHeader" >
+                    <div class="sortable">
+                        <div class="ui-state-default rounded {{x.status}}" *ngFor="let x of itemsChild"
+                            id="{{x.id}}">
+
+                            <div class="row no-gutters">
+                                <div class="col-9">
+                                    <div class="pointer" (click)="grandChild(x);childHeader=''">{{x.name}} <small
+                                            class="text-monospace">({{x.id}})</small> <span [hidden]="!x.child"><i
+                                                class="fas fa-caret-right"></i> </span></div>
+                                    <div>
+                                        <small>{{x.url}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-3 ">
+                                    <div class="text-right">
+
+                                        <span [ngSwitch]="x.status">
+                                            <span *ngSwitchCase="'hide'"><span class="pointer mx-1" placement="left"
+                                                    ngbTooltip="Invisible Pages"
+                                                    (click)="statusChild('disable', x);">
+                                                    <i class="fas fa-mask "></i></span></span>
+
+                                            <span *ngSwitchCase="'disable'"> <span class="pointer mx-1"
+                                                    placement="left" ngbTooltip="Disable"
+                                                    (click)="statusChild('enable', x);">
+                                                    <i class="far fa-eye-slash"></i> </span> </span>
+
+                                            <span *ngSwitchCase="'enable'"><span class="pointer mx-1"
+                                                    placement="left" ngbTooltip="Enable"
+                                                    (click)="statusChild('hide', x);">
+                                                    <i class="far fa-eye"></i> </span></span>
+
+                                            <span *ngSwitchDefault> </span>
+                                        </span>
+                                        <span class="handle pointer mx-1" placement="left" ngbTooltip="Sorting"><i
+                                                class="fas fa-arrows-alt-v"></i></span>
+
+                                        <span class="pointer mx-1" placement="left" ngbTooltip="Setting" [routerLink]="[ '/pages/edit', x.id ]"><i
+                                                class="fas fa-cog"></i> </span>
+
+                                        <span [hidden]="x.lock" class="pointer mx-1" (click)="deleteChild(x)"
+                                            placement="left" ngbTooltip="Delete"><i
+                                                class="fas fa-trash-alt"></i></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div [hidden]="itemsChild.length > 0" class="text-center ">
+                <div class="p-2">
+                    <strong> Select Page</strong>
+                </div>
+                <div class="height-min">
+                    <p><small>Doesn't have children</small> </p>
+                    <h1 class="py-5"><i class="fab fa-pagelines"></i></h1>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-12">
+        <div><small> Drag and drop for sorting</small> </div>
+        <div><small> Description : Invisible, Visible, Sorting, Setting, Delete </small> </div>
+    </div>
+</div>
+ 

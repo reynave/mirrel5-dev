@@ -1,0 +1,3 @@
+ng build --prod --base-href ./  --aot=false --build-optimizer=false
+
+ng build  --base-href ./ --output-path=../admin/dev

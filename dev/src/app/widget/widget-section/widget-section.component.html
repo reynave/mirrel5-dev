@@ -1,0 +1,39 @@
+<div class="container-fluid pb-5">
+    <div class="row no-gutters sortable">
+
+        <div class="col-sm-3 col-md-2 col-6 " *ngFor="let x of items">
+            <div class="m-2">
+                <div class="p-1 border handle" id="{{x.id}}">
+                    <div class="ngImg pointer"
+                        [ngStyle]="{'background': ' url('+x.img+') top center no-repeat', 'background-size':'cover' }">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="javascript:;" (click)="delete(x.id);"><small><i class="fas fa-trash-alt"></i> Del {{x.id}}
+                            </small></a>
+                            &nbsp;&nbsp;
+                        <a href="javascript:;" (click)="detail(x.id);"><small><i class="fas fa-edit"></i> Edit
+                            </small></a> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row" [hidden]="loading">
+        <div class="col-12 text-center">
+            loading...
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-right py-3">
+            <button type="button" class="btn btn-primary btn-sm" (click)="add();"> Add {{section}} </button>
+        </div>
+    </div>
+</div>

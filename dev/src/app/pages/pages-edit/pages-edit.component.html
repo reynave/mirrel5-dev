@@ -1,0 +1,137 @@
+<div class="container-fluid">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="row py-3 no-gutters">
+
+            <div class="col-6">
+                <strong>Pages Detail</strong>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr [hidden]="!parent_name">
+                            <td> <label> Parent Pages </label> </td>
+                            <td> <input type="text" class="form-control form-control-sm"  [value]="parent_name" readonly>  </td>
+                        </tr>
+                        <tr>
+                            <td width="120" class="mb-0 pb-0"><label for="a0">Pages Name</label></td>
+                            <td class="mb-0 pb-0">
+                                <input type="text" class="form-control form-control-sm" id="a0" placeholder="pages name"
+                                    (keypress)="fnURL();" (change)="fnURL();" required [(ngModel)]="model.name"
+                                    name="name" #name="ngModel">
+                                <small [hidden]="name.valid || name.pristine" class="text-danger"><em> Name is required
+                                    </em></small>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="my-0 py-0">
+                                <small id="a1" class="form-text text-muted">URL : http://www.domainsaya.com/</small>
+                                <input type="text" class="form-control-url text-muted" id="a1"
+                                    placeholder="{{model.name | lowercase}}" [(ngModel)]="model.url" name="url"
+                                    #url="ngModel" (keypress)="url_title();" (change)="url_title();">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="mt-0 pt-0"> </td>
+                            <td class="mt-0 pt-0">
+                                <input type="checkbox" id="a18" [(ngModel)]="model.post" name="post">&nbsp; <label
+                                    for="a18">as Post</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a2"> Themes</label></td>
+                            <td> <select class="form-control form-control-sm" id="a2" required
+                                    [(ngModel)]="model.themes" name="themes" #themes="ngModel">
+                                    <option *ngFor="let x of select" [value]="x">{{x}}</option>
+                                </select>
+
+                                <small [hidden]="themes.valid || themes.pristine" class="text-danger">
+                                    Power is required
+                                </small>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a3"> External Link </label> </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" id="a3"
+                                    placeholder="https://yourlink" [(ngModel)]="model.href" name="href" #href="ngModel">
+                                <div>
+                                    <input type="checkbox" id="a76" [(ngModel)]="model.href_target_blank"
+                                        name="href_target_blank"> <label for="a76">&nbsp; Open new tabs</label>
+                                </div>
+
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+
+                </table>
+
+
+
+            </div>
+
+            <div class="col-6">
+                <strong> For Opengraph and Metadata</strong>
+                <table class="table table-borderless">
+
+                    <tbody>
+                        <tr>
+                            <td width="120"><label for="a11">Title</label></td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" id="a11"
+                                    placeholder="{{model.name}}" [(ngModel)]="model.title" name="title">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="a1">Description </label></td>
+                            <td>
+                                <textarea class="form-control form-control-sm" [(ngModel)]="model.metadata_description"
+                                    name="matadata_description"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a1">Keywords </label></td>
+                            <td>
+                                <textarea class="form-control form-control-sm" [(ngModel)]="model.metadata_keywords"
+                                    name="metadata_keywords"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                                <td><label for="a1"> Image</label>
+    
+                                </td>
+                                <td> 
+                                    <div class="text-center">
+                                        <img [src]="model.img" class="pages-img" title="{{img_path}}" alt="{{img_path}}" >
+                                    </div>
+                                
+                                    <div class="mt-2">
+                                        <small>{{upload}}</small>
+                                        <input type="file" class="form-upload" (change)="onFileSelected($event)"> 
+                                    </div>
+    
+                                   
+                                </td>
+                            </tr>
+
+                    </tbody>
+                </table>
+               
+            </div>
+
+
+            <div class="col-12 text-center">
+                {{note}}
+                <button type="button" (click)="back();" class="mx-1 px-3 btn btn-sm btn-outline-dark">Back</button>
+
+                <button type="submit" [disabled]="!myForm.form.valid"
+                    class="mx-1 px-3 btn btn-sm btn-primary">Submit</button>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+.sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.sortable .ui-state-default {  background: #fff; padding:10px; font-size: 14px; height: auto; line-height: 1.2em; border: none; } 
+
+.sortable .ui-state-default:nth-child(odd) {    background: #f7fbff;}
+.sortable .ui-state-default:nth-child(even) {    background: #fff;}
+
+.ui-state-highlight{
+    background: #ddd;
+    display: block;
+}
+
+.sortable .enable{
+    color: #0073ea;
+}
+.sortable .hide{
+    color: #999;
+}
+
+.sortable .disable{
+    color: #eee;
+}
+.contain-view {
+    background: #fff;
+    min-height: 100vh;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.height-min{
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

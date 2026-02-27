@@ -1,0 +1,36 @@
+<div class="container-fluid py-3">
+    
+    <div class="row">
+        <div class="col-12">
+           
+            <table class="table table-hover table-striped border shadow-sm tableFixHead">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name & Url</th>
+                        <th width="30"></th>  
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let x of items">
+                        <td>{{x.id}}</td>
+                        <td>
+                            <div> {{x.name}}</div>
+                            <a href="javascript:;"  (click)="redirect(x.url);" > <small>{{x.url}} <i class="fas fa-share"></i> </small>  </a> 
+                        </td>
+                        <td class="text-center"> <a href="javascript:;" [routerLink]="['/content',x.id]" > <i class="fas fa-edit"></i>  </a>  </td>  
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+
+        <div class="col-6">
+             <small>Total  {{order.total}}</small>  
+        </div>
+
+        <div class="col-6 text-right">
+                {{order.no}}
+        </div>
+    </div>
+</div>

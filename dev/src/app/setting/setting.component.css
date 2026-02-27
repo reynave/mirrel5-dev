@@ -1,0 +1,14 @@
+.nav a{
+    color: #fff;
+}
+.nav-link { 
+    padding: .3rem 1rem;
+}
+
+.nav .active{
+    font-weight: bolder;
+}
+
+textarea.text-monospace{
+    font-size: 12px;;
+}

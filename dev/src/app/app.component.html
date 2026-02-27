@@ -1,0 +1,90 @@
+<header class="border-bottom shadow-sm bg-white " id="header" [hidden]="!login">
+
+    <div class="row no-gutters">
+        <div class="col-1 text-center text-primary"> <strong>  Mirrel 5</strong> </div>
+
+        <div class="col-8 col-md-7">
+            <div class="rounded-pill mirrel5iframe">
+                <small class="px-3">{{mirrelIframe}}</small>
+            </div>
+        </div>
+        <div class="col-3 col-md-4"> 
+            <div class="row no-gutters">
+                <div class="col-3 text-center "> 
+                    <a href="javascript:;" class="text-dark px-1" (click)="switch('iframe-pc')"> <i class="fas fa-desktop"></i> </a>
+                    <a href="javascript:;" class="text-dark px-1" (click)="switch('iframe-mobile')"> <i class="fas fa-mobile-alt"></i> </a>
+
+                </div>
+                <div class="col-3 text-center ">
+                    <a href="javascript:;" class="px-1  " (click)="toggleHeader();"><i class="fas fa-arrow-up"></i> Hide</a>
+                </div>
+                <div class="col-3 text-center ">
+                        <a href="javascript:;" class="px-1 " (click)="logout();"> <i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                <div class="col-3 border">
+                    <div class="bg-primary text-center"> <a href="javascript:;" class="text-white"
+                            (click)="preview();"> <i class="fas fa-globe-americas"></i> Preview</a></div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</header>
+
+<header class="showTop hidden shadow-sm " (click)="toggleHeader();">
+    <div class="showTopStyle">
+        <i class="fas fa-arrow-down"></i> Show
+    </div>
+</header> 
+
+
+<div class="left-navigator animated fadeInLeftBig" [hidden]="!login"  >
+    <ul>
+        <li><button type="button" placement="right" ngbTooltip="Pages Navigation" tooltipClass="myTooltipPrimary"
+                class="btn btn-silver shadow border rounded-pill text-primary text-big"  (click)="open(content,'pages');title='Pages Navigator'"> <i
+                    class="fas fa-pager"></i></button> </li>
+
+        <li><button type="button" title="Refresh"
+                class="btn btn-silver shadow border rounded-pill text-warning text-big" (click)="reload();"> <i
+                    class="fas fa-sync-alt"></i> </button> </li>
+
+        <li><button type="button" title="Setting" class="btn btn-silver shadow border rounded-pill text-dark text-big"
+                (click)="open(content,'setting');title='Setting'"> <i class="fas fa-cog"></i></button> </li>
+
+        <li><button type="button" title="Content" class="btn btn-silver shadow border rounded-pill text-info text-big"
+                (click)="open(content,'content');title='Content'"> <i class="far fa-newspaper"></i>  </button> </li>
+
+        <li><a href="{{base_url}}admin/elFinder-2.1.50" target="_blank" title="Files Manager"
+                class="btn btn-silver shadow border rounded-pill text-success text-big"> <i class="fas fa-folder"></i>
+            </a> </li> 
+
+    </ul>
+</div>
+
+<iframe id="iframe-live" class="{{iframeSwitch}} border" [hidden]="!login" [src]="iframe"
+    [ngStyle]="{'height': iframeHeight+'px', 'top':headerHeight+'px'}">Your browser doesn't support iFrames.</iframe>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="bg-primary rounded-top p-2">
+        <div class="row">
+            <div class="col-6">
+                <strong class="text-white">{{title}}</strong>
+            </div>
+            <div class="col-6 text-right"> 
+                <a href="javascript:;" class="text-white px-1" aria-label="Close" (click)="d('Cross click')"><i
+                        class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+</ng-template>
+
+ 
+
+ 

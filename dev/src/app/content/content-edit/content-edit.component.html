@@ -1,0 +1,144 @@
+<div class="container-fluid">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="row py-3 no-gutters">
+
+            <div class="col-6">
+                <strong>Pages Detail</strong>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="120"> <label> Pages </label> </td>
+                            <td>
+                                <select class="form-control form-control-sm" [(ngModel)]="model.id_pages" name="id_pages" (click)="refresh=true;">
+                                    <option *ngFor="let x of pages" [value]="x.id"> {{x.name}} </option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a0">Content Name</label></td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" id="a0" placeholder="Content name" (keyup)="fnURL();" (change)="fnURL();" (click)="refresh=true;" required [(ngModel)]="model.name" name="name" #name="ngModel">
+                                <small [hidden]="name.valid || name.pristine" class="text-danger"><em> Name is required
+                                    </em></small>
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a0">Custom URL</label></td>
+                            <td>
+                                <input type="text" class="form-control-url text-muted w-100" id="a1" placeholder="{{model.name | lowercase}}" [(ngModel)]="model.url" name="url" #url="ngModel" (keypress)="url_title();" (change)="url_title();">
+                                <div> <em> <small>you have add .html (dot html)</small> </em> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <label> Status </label> </td>
+                            <td>
+                                <select class="form-control form-control-sm" [(ngModel)]="model.status" name="status">
+                                    <option *ngFor="let x of status" [value]="x.id"> {{x.name}} </option>
+                                </select>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <hr>
+                <strong>Optional</strong>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="120"> <label> Heading 1 </label> </td>
+                            <td> <input type="text" class="form-control form-control-sm" [(ngModel)]="model.h1" name="h1" #h1="ngModel"> </td>
+                        </tr>
+
+                        <tr>
+                            <td> <label> Heading 2 </label> </td>
+                            <td> <input type="text" class="form-control form-control-sm" [(ngModel)]="model.h2" name="h2" #h2="ngModel"> </td>
+                        </tr>
+
+                        <tr>
+                            <td> <label> Heading 3 </label> </td>
+                            <td> <input type="text" class="form-control form-control-sm" [(ngModel)]="model.h3" name="h3" #h3="ngModel"> </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="col-6">
+                <strong> For Opengraph and Metadata</strong>
+                <table class="table table-borderless">
+
+                    <tbody>
+                        <tr>
+                            <td width="120"><label for="a11">Title</label></td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" id="a11" [(ngModel)]="model.title" name="title" #title="ngModel">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="a1">Description </label></td>
+                            <td>
+                                <textarea class="form-control form-control-sm" [(ngModel)]="model.metadata_description" name="metadata_description" #matadata_description="ngModel"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="a1">Keywords </label></td>
+                            <td>
+                                <textarea class="form-control form-control-sm" [(ngModel)]="model.metadata_keywords" name="metadata_keywords" #metadata_keywords="ngModel"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <img [src]="model.img" width="100%" title="{{img_path}}" alt="{{img_path}}">
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label> Upload</label>
+
+                            </td>
+                            <td>
+                                <div>
+                                    <small>{{upload}}</small>
+                                    <input type="file" class="form-upload" (change)="onFileSelected($event)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="img">Or by Url</label>
+
+                            </td>
+                            <td>
+
+                                <small>(untuk metadata harus berada di domain yang sama)</small>
+                                <input type="text" class="form-control form-control-sm" id="img" [(ngModel)]="model.img" name="img" #img="ngModel">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+
+            <div class="col-12 text-center">
+                <!--<button type="button" (click)="back();" class="mx-1 px-3 btn btn-sm btn-outline-dark">Back</button> -->
+
+                <button type="submit" [disabled]="!myForm.form.valid" class="mx-1 px-3 btn btn-sm btn-primary">Submit</button>
+            </div>
+
+        </div>
+    </form>
+</div>

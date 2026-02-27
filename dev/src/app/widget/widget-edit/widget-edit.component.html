@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="row  py-4 ">
+            <div class="col-6">
+
+                <table class="table table-borderless">
+                    <tbody>
+                      
+                        <tr [hidden]="!label.h1">
+                            <td width="120" class="px-0 mx-0"> <label> {{label.h1}} </label> </td>
+                            <td class="px-0 mx-0"> 
+                                <input type="text" [(ngModel)]="model.h1"
+                                name="h1" #h1="ngModel" class="form-control form-control-sm"/> 
+                            </td>
+                        </tr>
+
+                        <tr [hidden]="!label.h2">
+                            <td class="px-0 mx-0"> <label>{{label.h2}} </label></td>
+                            <td class="px-0 mx-0"> 
+                                <input type="text" [(ngModel)]="model.h2"
+                                name="h2" #h2="ngModel" class="form-control form-control-sm"/> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="px-0 mx-0"> <label> Href / Url </label> </td>
+                            <td class="px-0 mx-0">  
+                                <input type="text" [(ngModel)]="model.href"
+                                name="href" #href="ngModel" class="form-control form-control-sm"/>    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-6">
+
+                <table class="table table-borderless">
+                    <tbody>
+                        
+                        <tr [hidden]="!label.h3">
+                            <td width="120" class="px-0 mx-0"> <label> {{label.h3}} </label></td>
+                            <td class="px-0 mx-0"> 
+                                <input type="text" [(ngModel)]="model.h3"
+                                name="h3" #h3="ngModel" class="form-control form-control-sm"/>  
+                            </td>
+                        </tr>
+
+                        <tr [hidden]="!label.h4">
+                            <td class="px-0 mx-0"> <label> {{label.h4}} </label> </td>
+                            <td class="px-0 mx-0"> 
+                                  
+                                <input type="text" [(ngModel)]="model.h4"
+                                name="h4" #h4="ngModel" class="form-control form-control-sm"/>         
+                            
+                            </td>
+                        </tr> 
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6" [hidden]="!label.content">
+
+
+                <div><label> {{label.content}} </label> </div>
+                <editor apiKey="cc5hqwaiqsocbfakkn5qpug7r9bx5zioxppbw9h6w4gd0286" [(ngModel)]="model.content"
+                    name="content" #content="ngModel" [init]="initTinymce"></editor>
+            </div>
+
+            <div class="col-6" [hidden]="!label.img">
+
+                <table class="table table-borderless">
+                    <div><label> Image </label> </div>
+                 
+                    <div class="text-center">
+                        <img [src]="model.img" class="img-100" alt="Images">
+                    </div>
+
+                    <div class="mt-2">
+                        <small>{{upload}}</small>
+                        <input type="file" class="form-upload" (change)="onFileSelected($event)">
+                    </div>
+
+                    <div class="mt-2">
+                        <small>Images by URL </small>
+                        <input type="text" [(ngModel)]="model.img"
+                                name="img" #img="ngModel" class="form-control form-control-sm"/>    
+                    </div>
+                </table>
+            </div>
+ 
+
+            <div class="col-12 text-center mt-3">
+                <small> {{note}}</small> &nbsp;
+                <button type="button" (click)="back();" class="mx-1 px-3 btn btn-sm btn-outline-dark">Back to
+                    group</button>
+                <button type="submit" class="btn btn-sm btn-primary"> Update </button>
+            </div>
+        </div>
+    </form>
+</div>

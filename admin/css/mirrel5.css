@@ -1,0 +1,52 @@
+
+ .iframe_header{
+     border: 1px solid #000;
+     width: 80px;
+     height: 100%;
+     z-index: 99;
+     position: fixed;
+     top: 0px;
+     left: 0px;
+     background: #666;
+ }
+
+.richtext:hover, .text:hover{
+    outline: 1px dotted #c00;
+}
+
+
+.iframe_live{
+    position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding-left:80px; overflow:hidden;    
+}
+
+.btn-mirrel{
+    padding: 2px 10px;
+    font-size: 12px;
+    border: 1px solid #ccc; 
+background: #fefefe;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px; 
+margin: 0px 3px;;
+    width: fit-content;
+display: inline;
+height: fit-content;
+color: #337ab7 !important;
+    text-shadow: none !important;
+}
+
+.btn-fnModal{
+    padding: 2px 5px;
+    font-size: 12px;
+    margin: 0px 3px;
+    border: 1px solid #ccc;
+    background: #fff;;
+}
+
+.ui-sortable-helper{
+    background: rgba(254,254,254,0.8);
+}
+
+.tox-editor-container {
+    z-index:9;
+}

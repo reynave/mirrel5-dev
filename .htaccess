@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /website/mirrel5/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /website/mirrel5/index.php?/$1 [L]
