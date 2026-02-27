@@ -1,4 +1,5 @@
 # Mirrel5 CMS
+## version 2018-10-11
 
 Mirrel5 is a Content Management System (CMS) built on **CodeIgniter 3** with an **Angular 8** admin panel. Designed to create and manage dynamic websites with pages, content, widgets, labels, and a file manager.
 
